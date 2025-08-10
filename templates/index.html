@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing Data Cleaner</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Missing Data Cleaner</h1>
+            <p>Upload your dataset and clean missing values with ease</p>
+        </header>
+        
+        <div class="upload-section">
+            <div class="drop-area" id="dropArea">
+                <span class="drop-icon">📁</span>
+                <p>Drag & Drop your CSV file here</p>
+                <p>or</p>
+                <input type="file" id="fileInput" accept=".csv">
+                <label for="fileInput" class="browse-btn">Browse Files</label>
+            </div>
+        </div>
+        
+        <div class="options-section" id="optionsSection" style="display: none;">
+            <h2>Cleaning Options</h2>
+            
+            <div class="preview-section">
+                <h3>Dataset Preview</h3>
+                <div class="table-container" id="previewTable"></div>
+                <div class="missing-values" id="missingValues"></div>
+            </div>
+            
+            <div class="method-selection">
+                <h3>Select Cleaning Method</h3>
+                <div class="method-options">
+                    <label class="method-option">
+                        <input type="radio" name="method" value="mean" checked>
+                        <div class="option-card">
+                            <span class="icon">📊</span>
+                            <h4>Mean</h4>
+                            <p>Fill missing values with column average</p>
+                        </div>
+                    </label>
+                    
+                    <label class="method-option">
+                        <input type="radio" name="method" value="median">
+                        <div class="option-card">
+                            <span class="icon">📈</span>
+                            <h4>Median</h4>
+                            <p>Fill missing values with column median</p>
+                        </div>
+                    </label>
+                    
+                    <label class="method-option">
+                        <input type="radio" name="method" value="mode">
+                        <div class="option-card">
+                            <span class="icon">🔢</span>
+                            <h4>Mode</h4>
+                            <p>Fill missing values with most frequent value</p>
+                        </div>
+                    </label>
+                    
+                    <label class="method-option">
+                        <input type="radio" name="method" value="knn">
+                        <div class="option-card">
+                            <span class="icon">👥</span>
+                            <h4>KNN</h4>
+                            <p>Impute using nearest neighbors</p>
+                            <div class="knn-params" style="display: none;">
+                                <label>Neighbors: <input type="number" value="5" min="1"></label>
+                            </div>
+                        </div>
+                    </label>
+                    
+                    <label class="method-option">
+                        <input type="radio" name="method" value="drop">
+                        <div class="option-card">
+                            <span class="icon">❌</span>
+                            <h4>Drop</h4>
+                            <p>Remove rows/columns with missing values</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <button id="cleanBtn" class="clean-btn">Clean Dataset</button>
+        </div>
+        
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h2>Cleaning Results</h2>
+            <div class="success-message">
+                <span class="success-icon">✅</span>
+                <p>Your dataset has been successfully cleaned!</p>
+            </div>
+            <div class="table-container" id="resultTable"></div>
+            <div class="download-section">
+                <a id="downloadLink" class="download-btn" download>Download Cleaned Dataset</a>
+                <button id="newFileBtn" class="new-file-btn">Process Another File</button>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing your dataset...</p>
+        </div>
+    </div>
+    
+    <script src="static/script.js"></script>
+</body>
+</html>
